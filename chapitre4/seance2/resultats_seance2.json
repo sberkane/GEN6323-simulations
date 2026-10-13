@@ -1,0 +1,221 @@
+{
+  "parameters": {
+    "m_e": 12.0,
+    "J_e": 0.7,
+    "c_v": 1.0,
+    "c_omega": 0.08,
+    "r": 0.1,
+    "b": 0.45,
+    "goal": [
+      2.0,
+      1.0
+    ],
+    "k_rho": 0.6,
+    "k_alpha": 1.5,
+    "k_Pv": 4.0,
+    "k_Iv": 4.0,
+    "k_Pomega": 6.0,
+    "k_Iomega": 9.0,
+    "k_D": 0.4,
+    "T_f": 0.05,
+    "T_aw": 0.3,
+    "tau_max_cascade": 1.4,
+    "tau_max_windup": 0.4,
+    "epsilon_goal": 1e-09
+  },
+  "units": {
+    "m_e": "kg",
+    "J_e": "kg m²",
+    "c_v": "N s/m",
+    "c_omega": "N m s",
+    "r": "m",
+    "b": "m",
+    "goal": "m",
+    "k_rho": "s^-1",
+    "k_alpha": "s^-1",
+    "k_Pv": "s^-1",
+    "k_Iv": "s^-2",
+    "k_Pomega": "s^-1",
+    "k_Iomega": "s^-2",
+    "k_D": "sans dimension",
+    "T_f": "s",
+    "T_aw": "s",
+    "tau_max_cascade": "N m",
+    "tau_max_windup": "N m",
+    "epsilon_goal": "m"
+  },
+  "integration": {
+    "method": "RK4 pas fixe, échelon de charge segmenté à 5 s",
+    "dt_s": 0.002,
+    "dt_check_s": 0.001
+  },
+  "assumptions": [
+    "Paramètres synthétiques",
+    "Roulement pur, adhérence suffisante",
+    "Mesure parfaite",
+    "Couples équivalents aux roues",
+    "Aucune preuve globale pour la cascade simulée"
+  ],
+  "ideal": [
+    {
+      "initial_pose": [
+        0,
+        0,
+        0.0
+      ],
+      "goal": [
+        2.0,
+        1.0
+      ],
+      "horizon_s": 12.0,
+      "rho_final_m": 0.0017401246762439027,
+      "alpha_final_rad": 7.062007312264029e-09,
+      "min_commanded_speed_m_s": 0.0010440748057463415,
+      "reverse_fraction": 0.0,
+      "target_guard_activated": false
+    },
+    {
+      "initial_pose": [
+        0,
+        0,
+        1.5707963267948966
+      ],
+      "goal": [
+        2.0,
+        1.0
+      ],
+      "horizon_s": 12.0,
+      "rho_final_m": 0.0020394076036444222,
+      "alpha_final_rad": -1.6861951640523287e-08,
+      "min_commanded_speed_m_s": 0.001223644562186653,
+      "reverse_fraction": 0.0,
+      "target_guard_activated": false
+    },
+    {
+      "initial_pose": [
+        0,
+        0,
+        -2.0
+      ],
+      "goal": [
+        2.0,
+        1.0
+      ],
+      "horizon_s": 12.0,
+      "rho_final_m": 0.002679443967950964,
+      "alpha_final_rad": 3.752117117006293e-08,
+      "min_commanded_speed_m_s": -1.04495465995198,
+      "reverse_fraction": 0.025166666666666667,
+      "target_guard_activated": false
+    }
+  ],
+  "inner": {
+    "reference_m_s": 1.0,
+    "initial_speed_m_s": 0.0,
+    "horizon_s": 20.0,
+    "disturbance": {
+      "time_s": 5.0,
+      "force_N": -3.0
+    },
+    "torque_saturation": false,
+    "derivative_on": "mesure v, filtrée; z ≈ dot v",
+    "predicted_P_steady_error_m_s": 0.0625,
+    "P": {
+      "v_final_m_s": 0.9999999979222909,
+      "overshoot_percent": 0.0,
+      "time_peak_s": 4.998,
+      "settling_2percent_s": 0.98,
+      "speed_final_20s_m_s": 0.9375000000000069,
+      "error_final_20s_m_s": 0.06249999999999312,
+      "min_speed_after_load_m_s": 0.9375000000000069,
+      "steady_force_N": 3.9374999999996767
+    },
+    "PI": {
+      "v_final_m_s": 1.0004100547109223,
+      "overshoot_percent": 13.53352832342929,
+      "time_peak_s": 1.0,
+      "settling_2percent_s": 2.696,
+      "speed_final_20s_m_s": 0.9999999999996492,
+      "error_final_20s_m_s": 3.5083047578154947e-13,
+      "min_speed_after_load_m_s": 0.9541818535682023,
+      "steady_force_N": 4.000000000007791
+    },
+    "PID": {
+      "v_final_m_s": 0.9988235197530182,
+      "overshoot_percent": 16.22226242301665,
+      "time_peak_s": 1.276,
+      "settling_2percent_s": 3.076,
+      "speed_final_20s_m_s": 0.9999999998707467,
+      "error_final_20s_m_s": 1.2925327474988535e-10,
+      "min_speed_after_load_m_s": 0.9566726192367634,
+      "steady_force_N": 4.0000000009413315
+    }
+  },
+  "windup": {
+    "reference_m_s": 1.0,
+    "horizon_s": 12.0,
+    "disturbance_N": 0.0,
+    "force_limit_N": 8.0,
+    "sans": {
+      "v_final_m_s": 1.0000000684719332,
+      "overshoot_percent": 50.36015818584802,
+      "time_peak_s": 2.602,
+      "settling_2percent_s": 5.114,
+      "integral_final_m": 3.5965373008120705e-08,
+      "saturation_duration_s": 2.416,
+      "requested_wheel_torque_peak_Nm": 2.6401071541428642,
+      "applied_wheel_torque_peak_Nm": 0.4
+    },
+    "anti": {
+      "v_final_m_s": 0.9999999996177337,
+      "overshoot_percent": 0.0,
+      "time_peak_s": 12.0,
+      "settling_2percent_s": 2.62,
+      "integral_final_m": -1.9753584067567597e-10,
+      "saturation_duration_s": 1.016,
+      "requested_wheel_torque_peak_Nm": 2.4000000000000004,
+      "applied_wheel_torque_peak_Nm": 0.4
+    }
+  },
+  "cascade": {
+    "initial_state": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "horizon_s": 12.0,
+    "rho_final_m": 0.003844741694228636,
+    "rho_min_m": 0.003844741694228636,
+    "alpha_final_rad": 2.323652301239321e-06,
+    "max_wrapped_alpha_step_rad": 0.0009685324477665125,
+    "target_guard_activated": false,
+    "saturation_duration_s": 0.356,
+    "requested_wheel_torque_peak_Nm": 3.7531066526011285,
+    "applied_wheel_torque_peak_Nm": 1.4,
+    "velocity_rms_error_m_s": 0.15030302567518672,
+    "angular_velocity_rms_error_rad_s": 0.15668186031507209
+  },
+  "verification": {
+    "ideal_0_position_max_m": 1.1072972011213518e-13,
+    "ideal_0_alpha_analytical_max_rad": 7.238785340551016e-13,
+    "ideal_1_position_max_m": 7.774812910264167e-13,
+    "ideal_1_alpha_analytical_max_rad": 2.823297151621773e-13,
+    "ideal_2_position_max_m": 2.4394112952226417e-12,
+    "ideal_2_alpha_analytical_max_rad": 6.933342788784103e-13,
+    "inner_P_speed_max_m_s": 1.1853851233922796e-11,
+    "inner_PI_speed_max_m_s": 3.757993916053692e-12,
+    "inner_PID_speed_max_m_s": 1.619207337655304e-09,
+    "windup_sans_speed_max_m_s": 1.6539914859947658e-07,
+    "windup_anti_speed_max_m_s": 6.13942982008453e-08,
+    "cascade_position_max_m": 5.335917058775846e-07,
+    "cascade_speed_max_m_s": 6.641411129937325e-07,
+    "cascade_angular_speed_max_rad_s": 2.8127589980497802e-06,
+    "P_full_analytical_speed_max_m_s": 1.264088833607957e-11,
+    "allocation_inverse_max_abs": 1.1102230246251565e-15,
+    "power_identity_max_abs_W": 3.3306690738754696e-15
+  }
+}
