@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#102a43">
+  <title>Commander en boucle ouverte · GEN6323</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="diff_data.js" defer></script>
+  <script src="quad_data.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="site-header"><div class="header-inner">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">G</span><span><strong>GEN6323</strong><small>Robotique mobile</small></span></a>
+    <nav aria-label="Ressources"><a href="guide.html">Comprendre les modèles <span aria-hidden="true">↗</span></a><a href="../interactif/index.html">Laboratoire avec rétroaction <span aria-hidden="true">→</span></a></nav>
+  </div></header>
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <div><p class="eyebrow">CHAPITRE 4 · DYNAMIQUE ET BOUCLE OUVERTE</p><h1 id="page-title">Prévoir le mouvement,<br><em>sans le corriger.</em></h1><p class="intro-copy">On calcule les efforts à partir du mouvement désiré, puis on les applique. Que se passe-t-il si les actionneurs atteignent leur limite ou si le modèle se trompe ?</p></div>
+      <div class="principle" aria-label="Principe de la commande en boucle ouverte"><span class="principle-step"><b>01</b> Mouvement désiré</span><span class="principle-arrow" aria-hidden="true">↓</span><span class="principle-step"><b>02</b> Efforts précalculés</span><span class="principle-arrow" aria-hidden="true">↓</span><span class="principle-step"><b>03</b> Mouvement réel</span><p>Aucune correction à partir de l’état réel.</p></div>
+    </section>
+
+    <section class="lab" aria-label="Expériences de commande en boucle ouverte">
+      <div class="lab-top">
+        <div class="model-tabs" role="group" aria-label="Robot étudié"><button id="model-differentiel" type="button" data-model="differentiel" aria-pressed="true"><svg viewBox="0 0 32 24" aria-hidden="true"><rect x="7" y="4" width="18" height="16" rx="5"/><path d="M5 3v7m0 4v7M27 3v7m0 4v7M16 6v12m0-12-3 4m3-4 3 4"/></svg>Robot différentiel</button><button id="model-drone" type="button" data-model="drone" aria-pressed="false"><svg viewBox="0 0 34 24" aria-hidden="true"><path d="M6 12h22M10 12v6m14-6v6M2 7h9m12 0h9M6 7v5m22-5v5"/><rect x="12" y="9" width="10" height="6" rx="2"/></svg>Quadrirotor plan</button></div>
+        <a class="text-link" href="guide.html">Guide de lecture <span aria-hidden="true">→</span></a>
+      </div>
+      <div id="load-error" class="notice error" role="alert" hidden></div>
+      <div class="experiment-controls">
+        <label class="field"><span>Cadence du mouvement</span><select id="duration" aria-describedby="duration-help"></select><small id="duration-help">Même chemin, durée différente.</small></label>
+        <label class="field field-case"><span>Situation étudiée</span><select id="case"></select><small id="case-help">Les efforts demandés sont identiques entre les situations.</small></label>
+        <div class="case-badge" id="case-badge"><span class="status-dot"></span><span id="case-short">Modèle exact</span></div>
+      </div>
+
+      <div class="stage-grid">
+        <section class="scene-card" aria-labelledby="scene-title">
+          <div class="panel-heading"><div><p class="eyebrow small">MOUVEMENT DANS LE PLAN</p><h2 id="scene-title">Le trajet et le robot</h2></div><div class="legend"><span><i class="line-key reference"></i>Référence</span><span><i class="line-key real"></i>Réel</span></div></div>
+          <canvas id="scene" role="img" aria-label="Animation de la référence et du mouvement réel du robot"></canvas>
+          <div class="scene-bottom"><span id="scene-caption">Vue de dessus · axes en mètres</span><span>Silhouettes agrandies pour la lecture</span></div>
+          <div id="stop-message" class="notice stop" role="status" hidden></div>
+        </section>
+        <aside class="reading-panel" aria-label="Lecture de l'expérience">
+          <div class="time-display"><span>INSTANT OBSERVÉ</span><div><strong id="clock">0,00</strong><span>s <small id="end-time">/ 32</small></span></div></div>
+          <div class="live-metrics"><div><span>Écart de position</span><strong id="position-error">0,000 <small>m</small></strong></div><div><span id="speed-label">Vitesse réelle</span><strong id="actual-speed">0,000 <small>m/s</small></strong></div><div><span id="angle-label">Écart de cap</span><strong id="angle-error">0,0 <small>°</small></strong></div></div>
+          <div class="reading-note"><span class="note-kicker">À OBSERVER</span><p id="observation"></p></div>
+          <p class="case-description" id="case-description"></p>
+        </aside>
+      </div>
+
+      <div class="transport" aria-label="Lecture de l'animation">
+        <div class="transport-buttons"><button id="play" class="play-button" type="button" aria-label="Lire l'animation"><span id="play-icon" aria-hidden="true">▶</span><span id="play-label">Lire</span></button><button id="reset" class="reset-button" type="button" title="Revenir au début" aria-label="Revenir au début">↺</button></div>
+        <label class="scrubber"><span class="sr-only">Instant de l’animation en secondes</span><input id="time" type="range" min="0" max="32" value="0" step="0.02"><span><b>0 s</b><b id="slider-end">32 s</b></span></label>
+        <label class="playback-rate"><span>Lecture</span><select id="rate" aria-label="Vitesse de lecture"><option value="0.5">× 0,5</option><option value="1" selected>× 1</option><option value="2">× 2</option><option value="4">× 4</option></select></label>
+      </div>
+      <p class="playback-hint">La vitesse de lecture change uniquement l’animation. Choisissez une autre durée pour changer la manœuvre physique.</p>
+
+      <section class="charts-grid" aria-label="Courbes du mouvement et des efforts">
+        <article class="chart-card"><div class="chart-heading"><h3 id="chart-velocity-title">Vitesse d’avance</h3><span id="chart-velocity-unit">m/s</span></div><div id="legend-velocity" class="legend chart-legend"></div><canvas id="chart-velocity" role="img" aria-label="Vitesse désirée et vitesse réelle en fonction du temps"></canvas></article>
+        <article class="chart-card"><div class="chart-heading"><h3 id="chart-rotation-title">Vitesse de rotation</h3><span id="chart-rotation-unit">rad/s</span></div><div id="legend-rotation" class="legend chart-legend"></div><canvas id="chart-rotation" role="img" aria-label="Rotation désirée et réelle en fonction du temps"></canvas></article>
+        <article class="chart-card"><div class="chart-heading"><h3>Écart à la position désirée</h3><span>m</span></div><div id="legend-error" class="legend chart-legend"></div><canvas id="chart-error" role="img" aria-label="Erreur de position en fonction du temps"></canvas></article>
+        <article class="chart-card"><div class="chart-heading"><h3 id="chart-input-title">Couples des roues</h3><span id="chart-input-unit">N·m</span></div><div id="legend-input" class="legend chart-legend"></div><canvas id="chart-input" role="img" aria-label="Efforts prescrits et réellement appliqués en fonction du temps"></canvas></article>
+      </section>
+
+      <section class="summary-strip" aria-label="Bilan de la manœuvre entière"><div class="summary-label">BILAN DU CAS<br><span id="summary-scope">sur toute la manœuvre</span></div><div><span>Erreur de position RMS</span><strong id="rms-error">—</strong></div><div><span id="peak-label">Couple appliqué maximal</span><strong id="peak-input">—</strong></div><div><span>Temps avec limitation</span><strong id="saturated-time">—</strong></div></section>
+      <div class="limits-note"><span class="limits-icon" aria-hidden="true">i</span><p><strong>Une limite d’effort n’est pas une limite directe de vitesse.</strong> Les efforts appliqués déterminent l’accélération; les équations de mouvement donnent ensuite les vitesses et la position.</p></div>
+      <details class="assumptions"><summary>Hypothèses et paramètres de l’expérience</summary><ul id="assumptions"></ul><div id="parameter-list" class="parameter-list"></div><p>Les courbes sont calculées à l’avance. La référence fournit les efforts demandés; l’état réel sert uniquement à décrire et afficher le mouvement. Les erreurs RMS comparent les positions au même instant.</p></details>
+    </section>
+    <section class="next-step"><div><p class="eyebrow">LA SUITE</p><h2>Et si le robot pouvait corriger ses erreurs ?</h2><p>Étudiez ensuite les boucles de vitesse, la régulation de position et le suivi de trajectoire.</p></div><a href="../interactif/index.html" class="next-link">Explorer la rétroaction <span aria-hidden="true">→</span></a></section>
+  </main>
+  <footer>GEN6323 · Robotique mobile <span>Modèles pédagogiques · Lecture autonome hors ligne</span></footer>
+  <noscript><p class="notice error">Activez JavaScript pour lire l’animation. Le <a href="guide.html">guide des modèles</a> reste consultable sans JavaScript.</p></noscript>
+</body>
+</html>

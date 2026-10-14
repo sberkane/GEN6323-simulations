@@ -1,0 +1,151 @@
+{
+  "parameters": {
+    "m": 1.5,
+    "J_y": 0.03,
+    "ell": 0.25,
+    "g": 9.81,
+    "theta_max_rad": 0.2617993877991494,
+    "z0": 5.0,
+    "F_max": 7.7,
+    "mass_error_fraction": 0.05
+  },
+  "integration_dt": 0.002,
+  "sample_dt": 0.02,
+  "method": "RK4, poussées prescrites sans retour d’état; référence horizontale par quadrature de Gauss indépendante.",
+  "cases": {
+    "T4_nominal": {
+      "position_rmse_m": 3.0620707514847153e-11,
+      "position_max_error_m": 8.271405100106002e-11,
+      "position_final_error_m": 8.271405100106002e-11,
+      "x_final_m": 4.42204977357065,
+      "altitude_final_m": 5.000000000001828,
+      "altitude_min_m": 4.999999999997548,
+      "pitch_max_error_deg": 1.9116725791358078e-10,
+      "pitch_final_error_deg": 1.9116725791358078e-10,
+      "vx_final_m_s": 6.547334759699833e-11,
+      "vz_final_m_s": 4.588142014464818e-12,
+      "requested_peak_force_N": 7.73331803491831,
+      "applied_peak_force_N": 7.73331803491831,
+      "saturation_fraction": 0.0,
+      "nominal_demand_above_limit_fraction": 0.10700000000000001,
+      "end_time_s": 4.0
+    },
+    "T4_limited": {
+      "position_rmse_m": 0.5621921886229899,
+      "position_max_error_m": 1.6854648767275124,
+      "position_final_error_m": 1.6854648767275124,
+      "x_final_m": 6.106008641823446,
+      "altitude_final_m": 5.071234685626766,
+      "altitude_min_m": 4.978147172218222,
+      "pitch_max_error_deg": 4.529556890004704,
+      "pitch_final_error_deg": 4.529556890004704,
+      "vx_final_m_s": 1.5556314185642848,
+      "vz_final_m_s": 0.09483610569165203,
+      "requested_peak_force_N": 7.73331803491831,
+      "applied_peak_force_N": 7.7,
+      "saturation_fraction": 0.10700000000000001,
+      "nominal_demand_above_limit_fraction": 0.10700000000000001,
+      "end_time_s": 4.0
+    },
+    "T4_model_error": {
+      "position_rmse_m": 1.6766754363599121,
+      "position_max_error_m": 3.7430706725044325,
+      "position_final_error_m": 3.7430706725044325,
+      "x_final_m": 4.211475974829169,
+      "altitude_final_m": 1.2628571428588398,
+      "altitude_min_m": 1.2628571428588398,
+      "pitch_max_error_deg": 1.9116725791358078e-10,
+      "pitch_final_error_deg": 1.9116725791358078e-10,
+      "vx_final_m_s": 6.234673806287667e-11,
+      "vz_final_m_s": -1.8685714285670652,
+      "requested_peak_force_N": 7.73331803491831,
+      "applied_peak_force_N": 7.73331803491831,
+      "saturation_fraction": 0.0,
+      "nominal_demand_above_limit_fraction": 0.10700000000000001,
+      "end_time_s": 4.0
+    }
+  },
+  "checks": {
+    "allocation_1000_cases_max_error": 7.105427357601002e-15,
+    "hover_acceleration_max_error": 0.0,
+    "positive_pitch_ax_m_s2": 2.6285815777493133,
+    "tilted_altitude_acceleration_error": 0.0,
+    "left_group_increase_gives_positive_moment": true,
+    "command_arguments": [
+      "t",
+      "T",
+      "nominal"
+    ],
+    "finite_states": true,
+    "reference_matches_nominal": {
+      "T4": [
+        8.269385176618016e-11,
+        2.4522606167920458e-12,
+        3.33649807260117e-12,
+        6.547320231390722e-11,
+        4.7737197898338035e-12,
+        1.6847079287174438e-12
+      ]
+    },
+    "timestep_comparison": {
+      "T4_nominal": {
+        "max_position_difference_m": 7.747782836306644e-11,
+        "max_pitch_difference_rad": 3.124777674588378e-12,
+        "max_abs_state_difference": [
+          7.745626362520852e-11,
+          2.4522606167920458e-12,
+          3.124777674588378e-12,
+          6.13284925102646e-11,
+          4.4737437458290246e-12,
+          1.5785150964120476e-12
+        ]
+      },
+      "T4_limited": {
+        "max_position_difference_m": 3.549657340488464e-05,
+        "max_pitch_difference_rad": 1.659347204779893e-06,
+        "max_abs_state_difference": [
+          3.5493233529138024e-05,
+          6.140862325310081e-07,
+          1.659347204779893e-06,
+          3.272153340150297e-05,
+          1.3321406223398835e-06,
+          8.296736029311802e-07
+        ]
+      },
+      "T4_model_error": {
+        "max_position_difference_m": 7.375829130275925e-11,
+        "max_pitch_difference_rad": 3.124777674588378e-12,
+        "max_abs_state_difference": [
+          7.37401251171832e-11,
+          2.213340621892712e-12,
+          3.124777674588378e-12,
+          5.838950421604095e-11,
+          4.2728043325723775e-12,
+          1.5785150964120476e-12
+        ]
+      }
+    },
+    "mass_error_analytic_position_max_error_m": 7.8734352371157e-11,
+    "reference_quadrature_64_vs_96_max_error": 7.105427357601002e-15,
+    "limited_min_force_N": 7.286714018013037,
+    "limited_max_force_N": 7.7,
+    "positive_nominal_group_forces": true,
+    "identical_requested_inputs_between_cases": true,
+    "inputs_unchanged_after_initial_state_perturbation": true,
+    "perturbed_trajectory_is_different": true,
+    "ground_stop": {
+      "stop": {
+        "t": 0.6543199191327149,
+        "reason": "Sol atteint : simulation arrêtée, sans rebond."
+      },
+      "expected_time_s": 0.6543199191335406,
+      "time_error_s": 8.256728634137289e-13,
+      "last_altitude_m": 0.0,
+      "no_below_ground_state": true,
+      "times_strictly_increasing": true
+    },
+    "immediate_ground_stop_has_one_frame": true,
+    "maximum_timestep_position_difference_m": 3.549657340488464e-05,
+    "passed": true
+  }
+}

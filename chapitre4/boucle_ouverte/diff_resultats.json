@@ -1,0 +1,203 @@
+{
+  "parameters": {
+    "m_e": 12.0,
+    "J_e": 0.7,
+    "r": 0.1,
+    "b": 0.45,
+    "c_v": 1.0,
+    "c_w": 0.08,
+    "tau_max": 1.4,
+    "A": 3.0,
+    "B": 1.6,
+    "mass_error_fraction": 0.1
+  },
+  "integration_dt": 0.002,
+  "sample_dt": 0.02,
+  "method": "RK4, couples prescrits indépendants des états réels; conditions initiales exactes.",
+  "cases": {
+    "T32_nominal": {
+      "position_rmse_m": 2.6497048737694685e-14,
+      "position_max_error_m": 4.924466964141539e-14,
+      "position_final_error_m": 4.7109896057885737e-14,
+      "heading_rmse_rad": 6.55394610040298e-15,
+      "v_rmse_m_s": 7.586636405212416e-16,
+      "omega_rmse_rad_s": 4.744207653363934e-15,
+      "requested_peak_torque_Nm": 0.15287235881153,
+      "applied_peak_torque_Nm": 0.15287235397468335,
+      "saturation_fraction": 0.0,
+      "nominal_demand_above_limit_fraction": 0.0,
+      "peak_reference_speed_m_s": 0.8612563240809162,
+      "initial_speed_m_s": 0.8612563240809162
+    },
+    "T32_limited": {
+      "position_rmse_m": 2.6497048737694685e-14,
+      "position_max_error_m": 4.924466964141539e-14,
+      "position_final_error_m": 4.7109896057885737e-14,
+      "heading_rmse_rad": 6.55394610040298e-15,
+      "v_rmse_m_s": 7.586636405212416e-16,
+      "omega_rmse_rad_s": 4.744207653363934e-15,
+      "requested_peak_torque_Nm": 0.15287235881153,
+      "applied_peak_torque_Nm": 0.15287235397468335,
+      "saturation_fraction": 0.0,
+      "nominal_demand_above_limit_fraction": 0.0,
+      "peak_reference_speed_m_s": 0.8612563240809162,
+      "initial_speed_m_s": 0.8612563240809162
+    },
+    "T32_model_error": {
+      "position_rmse_m": 0.12553847716957955,
+      "position_max_error_m": 0.19211744524167185,
+      "position_final_error_m": 0.19211744524167185,
+      "heading_rmse_rad": 6.55394610040298e-15,
+      "v_rmse_m_s": 0.01725143922960795,
+      "omega_rmse_rad_s": 4.744207653363934e-15,
+      "requested_peak_torque_Nm": 0.15287235881153,
+      "applied_peak_torque_Nm": 0.15287235397468335,
+      "saturation_fraction": 0.0,
+      "nominal_demand_above_limit_fraction": 0.0,
+      "peak_reference_speed_m_s": 0.8612563240809162,
+      "initial_speed_m_s": 0.8612563240809162
+    },
+    "T8_nominal": {
+      "position_rmse_m": 1.6104954609470123e-12,
+      "position_max_error_m": 3.4324117056523684e-12,
+      "position_final_error_m": 6.985300750495907e-13,
+      "heading_rmse_rad": 1.4387890544728901e-12,
+      "v_rmse_m_s": 4.972215554646838e-13,
+      "omega_rmse_rad_s": 4.702913586603766e-12,
+      "requested_peak_torque_Nm": 2.186840174147653,
+      "applied_peak_torque_Nm": 2.1868401391904477,
+      "saturation_fraction": 0.0,
+      "nominal_demand_above_limit_fraction": 0.42850000000000005,
+      "peak_reference_speed_m_s": 3.445025296323665,
+      "initial_speed_m_s": 3.445025296323665
+    },
+    "T8_limited": {
+      "position_rmse_m": 3.419285931126984,
+      "position_max_error_m": 7.8213819504943025,
+      "position_final_error_m": 7.8213819504943025,
+      "heading_rmse_rad": 1.0433440617265308,
+      "v_rmse_m_s": 0.11892394609493916,
+      "omega_rmse_rad_s": 0.6638447232474727,
+      "requested_peak_torque_Nm": 2.186840174147653,
+      "applied_peak_torque_Nm": 1.4,
+      "saturation_fraction": 0.42850000000000005,
+      "nominal_demand_above_limit_fraction": 0.42850000000000005,
+      "peak_reference_speed_m_s": 3.445025296323665,
+      "initial_speed_m_s": 3.445025296323665
+    },
+    "T8_model_error": {
+      "position_rmse_m": 0.15442792871083852,
+      "position_max_error_m": 0.23687712914918665,
+      "position_final_error_m": 0.2343682618393432,
+      "heading_rmse_rad": 1.4387890544728901e-12,
+      "v_rmse_m_s": 0.09230290106798326,
+      "omega_rmse_rad_s": 4.702913586603766e-12,
+      "requested_peak_torque_Nm": 2.186840174147653,
+      "applied_peak_torque_Nm": 2.1868401391904477,
+      "saturation_fraction": 0.0,
+      "nominal_demand_above_limit_fraction": 0.42850000000000005,
+      "peak_reference_speed_m_s": 3.445025296323665,
+      "initial_speed_m_s": 3.445025296323665
+    }
+  },
+  "checks": {
+    "allocation_max_error": 1.7763568394002505e-14,
+    "command_arguments": [
+      "t",
+      "T",
+      "nominal"
+    ],
+    "reference_matches_nominal": {
+      "T32": [
+        2.9976021664879227e-14,
+        4.8504603111787503e-14,
+        2.2093438190040615e-14,
+        2.1094237467877974e-15,
+        1.6986412276764895e-14
+      ],
+      "T8": [
+        3.354205801997523e-12,
+        1.915134717478395e-12,
+        3.802728965052182e-12,
+        1.602495913743951e-12,
+        1.6421974891045465e-11
+      ]
+    },
+    "timestep_comparison": {
+      "T32_nominal": {
+        "max_position_difference_m": 1.2791428773353012e-13,
+        "max_abs_state_difference": [
+          4.218847493575595e-14,
+          1.2603730992905016e-13,
+          2.982683544594522e-14,
+          4.9960036108132044e-15,
+          1.6653345369377348e-14
+        ],
+        "position_rmse_fine_m": 8.434880462806006e-14
+      },
+      "T32_limited": {
+        "max_position_difference_m": 1.2791428773353012e-13,
+        "max_abs_state_difference": [
+          4.218847493575595e-14,
+          1.2603730992905016e-13,
+          2.982683544594522e-14,
+          4.9960036108132044e-15,
+          1.6653345369377348e-14
+        ],
+        "position_rmse_fine_m": 8.434880462806006e-14
+      },
+      "T32_model_error": {
+        "max_position_difference_m": 1.259276248716642e-13,
+        "max_abs_state_difference": [
+          5.551115123125783e-14,
+          1.2592704656810838e-13,
+          2.982683544594522e-14,
+          6.217248937900877e-15,
+          1.6653345369377348e-14
+        ],
+        "position_rmse_fine_m": 0.12553847701410428
+      },
+      "T8_nominal": {
+        "max_position_difference_m": 3.2131634323026513e-12,
+        "max_abs_state_difference": [
+          3.140598892059643e-12,
+          1.7839063559677015e-12,
+          3.5640605050568652e-12,
+          1.5019097077129118e-12,
+          1.539435245945242e-11
+        ],
+        "position_rmse_fine_m": 1.090387236464147e-13
+      },
+      "T8_limited": {
+        "max_position_difference_m": 2.203734668892531e-05,
+        "max_abs_state_difference": [
+          1.3693804513881247e-05,
+          1.7974617262161985e-05,
+          2.6923928855282497e-06,
+          3.9508871596538597e-07,
+          1.1440379239502363e-06
+        ],
+        "position_rmse_fine_m": 3.4192765226991484
+      },
+      "T8_model_error": {
+        "max_position_difference_m": 3.2016389754359095e-12,
+        "max_abs_state_difference": [
+          3.11928260998684e-12,
+          1.9590995492535512e-12,
+          3.5640605050568652e-12,
+          1.3626877404249171e-12,
+          1.539435245945242e-11
+        ],
+        "position_rmse_fine_m": 0.1544279271967628
+      }
+    },
+    "finite_states": true,
+    "limited_max_torque_Nm": 1.4,
+    "identical_requested_inputs_between_cases": true,
+    "inputs_unchanged_after_initial_state_perturbation": true,
+    "perturbed_trajectory_is_different": true,
+    "slow_limited_identical_to_nominal": true,
+    "maximum_timestep_position_difference_m": 2.203734668892531e-05,
+    "passed": true
+  }
+}
