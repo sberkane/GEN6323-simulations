@@ -1,0 +1,117 @@
+<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GEN6323 · Arrêt par commande prédictive</title>
+<style>
+:root{--navy:#102a43;--blue:#1f5a94;--teal:#168c8c;--gold:#f2b705;--orange:#b84220;--muted:#61768a;--line:#dce5ed;--bg:#f3f6f8}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--navy);font:16px/1.5 system-ui,-apple-system,sans-serif}header{background:var(--navy);color:white;padding:27px max(24px,calc((100vw - 1180px)/2));border-bottom:5px solid var(--gold)}header small{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:#b8cfe1}h1{font-size:clamp(23px,3.5vw,34px);line-height:1.2;margin:9px 0}header p{margin:5px 0 0;color:#dce5ed;font-size:15px}main{max-width:1228px;margin:auto;padding:24px;display:grid;grid-template-columns:280px 1fr;gap:20px}section,.card{background:white;border:1px solid var(--line);border-radius:12px;padding:20px}aside{display:grid;align-content:start;gap:16px}h2{font-size:17px;margin:0 0 13px}h3{font-size:14px;margin:0 0 7px}.hint{font-size:13px;color:var(--muted);margin:10px 0 0}.choices{display:grid;gap:10px}label.choice{display:flex;gap:10px;padding:12px;border:1px solid var(--line);border-radius:8px;cursor:pointer}label.choice:has(input:checked){border:2px solid var(--teal);padding:11px;background:#f0fafa}input{accent-color:var(--teal)}select{font:inherit;color:var(--navy);background:white;border:1px solid var(--line);border-radius:5px;padding:3px 6px;max-width:95px}.choice span{display:block;font-size:13px;color:var(--muted)}button{font:inherit;border:1px solid var(--line);border-radius:7px;background:white;color:var(--navy);padding:9px 13px;cursor:pointer}button.primary{background:var(--blue);color:white;border-color:var(--blue)}button:disabled{opacity:.42;cursor:default}button:focus-visible,label:focus-within{outline:3px solid var(--gold);outline-offset:2px}.controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}.controls button{font-size:13px}.facts{display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:13px}.facts div:nth-child(even){text-align:right;font-weight:600}.workspace{display:grid;gap:16px;align-content:start}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.metric{background:white;border:1px solid var(--line);border-radius:9px;padding:12px 16px}.metric span{display:block;font-size:12px;color:var(--muted)}.metric strong{font-size:25px;letter-spacing:-.5px}.metric em{font-size:12px;color:var(--muted);font-style:normal}.status{border-left:4px solid var(--teal);background:#edf8f6;border-radius:7px;padding:12px 16px;font-size:14px}.status.warn{background:#fff2ed;border-color:var(--orange);color:#8b3018}.status p{margin:4px 0 0;font-size:13px}svg{width:100%;height:auto;display:block}.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:8px}.swatch{display:inline-block;width:20px;border-top:3px solid var(--blue);vertical-align:middle;margin-right:5px}.swatch.dash{border-top:3px dashed var(--teal)}.twocol{display:grid;grid-template-columns:1fr 1fr;gap:16px}table{width:100%;border-collapse:collapse;font-size:13px}th{text-align:right;font-weight:600;color:var(--muted);border-bottom:1px solid var(--line);padding:8px 3px}td{text-align:right;padding:7px 3px;border-bottom:1px solid #edf1f5}th:first-child,td:first-child{text-align:left}tbody tr:first-child{background:#f4f9fc}.formula{font-family:ui-monospace,monospace;background:var(--bg);border-radius:6px;padding:9px;font-size:12px;line-height:1.7}.footer{grid-column:1/-1;font-size:12px;color:var(--muted);padding:0 4px}details{font-size:13px}summary{cursor:pointer;font-weight:600}details p{margin:8px 0}.readout{font-size:13px;color:var(--muted);margin-left:auto}.sectionhead{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}.sectionhead h2{margin:0}@media(max-width:900px){main{grid-template-columns:1fr;padding:16px}aside{grid-template-columns:1fr 1fr}header{padding:22px 20px}}@media(max-width:580px){aside,.twocol{grid-template-columns:1fr}.metrics{gap:6px}.metric{padding:10px}.metric strong{font-size:22px}section,.card{padding:15px}.controls button{flex:1}.facts{font-size:12px}}
+</style>
+<header><small>GEN6323 · Chapitre 4 · Séance 4</small><h1>Voir assez loin pour s'arrêter</h1><p>Commande prédictive : prévoir une suite, appliquer la première accélération, puis recalculer.</p></header>
+<main><aside><section><h2>Durée de la prédiction</h2><div class="choices"><label class="choice"><input type="radio" name="horizon" value="1"><div><strong>Un pas · 1 seconde</strong><span>La limite semble encore accessible.</span></div></label><label class="choice"><input type="radio" name="horizon" value="2" checked><div><strong>Deux pas · 2 secondes</strong><span>Le freinage apparaît dans la prévision.</span></div></label></div><div class="controls"><button id="play" class="primary">Lire</button><button id="step">Un pas</button><button id="reset">Recommencer</button></div><p class="hint">Changer l'horizon remet l'expérience au départ.</p></section><section><h2>Le même robot, le même coût</h2><div class="facts"><div>Position initiale</div><div>0 m</div><div>Vitesse initiale</div><div>2 m/s</div><div>Ligne à respecter</div><div>2 m</div><div>Accélération</div><div>−1 à +1 m/s²</div><div>Vitesse minimale</div><div>0 m/s</div><div><label for="rho">Poids de l'effort ρ</label></div><div><select id="rho"><option value="0.01">0,01</option><option value="0.1" selected>0,1</option><option value="1">1</option><option value="10">10</option></select></div></div><p class="hint">Le robot souhaite conserver 2 m/s tant que les contraintes le permettent.</p><p id="costformula" class="formula">J = Σ [(vᵢ₊₁ − 2)² + 0,1 aᵢ²]</p><details><summary>Quel modèle est calculé ?</summary><p>Pendant chaque seconde, l'accélération est constante et réalisée exactement :</p><div class="formula">xᵢ₊₁ = xᵢ + vᵢ + ½ aᵢ<br>vᵢ₊₁ = vᵢ + aᵢ</div><p>Le petit problème quadratique continu est résolu à chaque pas. Aucune grille d'accélérations n'est utilisée.</p></details></section></aside>
+<div class="workspace"><div class="metrics"><div class="metric"><span>Position actuelle</span><strong id="mx">0,00</strong> <em>m</em></div><div class="metric"><span>Vitesse actuelle</span><strong id="mv">2,00</strong> <em>m/s</em></div><div class="metric"><span>Prochaine accélération</span><strong id="ma">−1,00</strong> <em>m/s²</em></div></div><div id="status" class="status" role="status" aria-live="polite"></div><section><div class="sectionhead"><h2>Du mouvement réalisé à la prédiction</h2><span id="time" class="readout"></span></div><svg id="scene" viewBox="0 0 760 145" role="img" aria-label="Robot sur une ligne, avec sa position actuelle et la limite à deux mètres"></svg><div class="legend"><span><i class="swatch"></i>Réalisé</span><span><i class="swatch dash"></i>Prévu à l'instant actuel</span><span>La ligne orange est la limite.</span></div><svg id="plot" viewBox="0 0 760 225" role="img" aria-label="Position en fonction du temps, réalisée et prédite"></svg></section><div class="twocol"><section><h2>Suite calculée maintenant</h2><table><thead><tr><th>À appliquer</th><th>a (m/s²)</th><th>x après (m)</th><th>v après (m/s)</th></tr></thead><tbody id="plan"></tbody></table><p id="planhint" class="hint"></p></section><section><h2>États obtenus</h2><table><thead><tr><th>t (s)</th><th>x (m)</th><th>v (m/s)</th></tr></thead><tbody id="history"></tbody></table><p class="hint">À chaque clic, seule la première accélération prévue est appliquée pendant une seconde.</p></section></div></div>
+<p class="footer">Modèle pédagogique sans retard ni perturbation. Aucun ingrédient terminal n'est ajouté : deux pas suffisent ici, sans garantie générale pour un autre état ou un autre système. Les valeurs sont arrondies uniquement à l'affichage.</p></main>
+<script id="mpc-solver">
+/* GEN6323 - MPC scalaire, horizons 1 et 2. Aucune bibliothèque externe. */
+(function (root) {
+  'use strict';
+  const dot = (a, b) => a.reduce((s, x, i) => s + x * b[i], 0);
+  function build({x = 0, v = 2, N = 2, T = 1, rho = 0.1, vref = 2, limit = 2} = {}) {
+    if (![x,v,T,rho,vref,limit].every(Number.isFinite) || ![1,2].includes(N) || T <= 0 || rho <= 0 || v < -1e-9) throw Error('Paramètres invalides');
+    const D = [], E = [], H = [], g = [], C = [], b = [];
+    for (let i=0; i<N; i++) {
+      D.push(Array.from({length:N}, (_,j) => j<=i ? T : 0));
+      E.push(Array.from({length:N}, (_,j) => j<=i ? T*T*(i-j+0.5) : 0));
+    }
+    for (let j=0; j<N; j++) {
+      H.push(Array.from({length:N}, (_,k) => 2*(D.reduce((s,row) => s+row[j]*row[k],0)+(j===k?rho:0))));
+      g.push(2*D.reduce((s,row)=>s+row[j]*(v-vref),0));
+      const unit=Array.from({length:N},(_,k)=>k===j?1:0);
+      C.push(unit,unit.map(z=>-z)); b.push(1,1);
+    }
+    for (let i=0; i<N; i++) { C.push(D[i].map(z=>-z),E[i]); b.push(v,limit-x-(i+1)*T*v); }
+    return {x,v,N,T,rho,vref,limit,D,E,H,g,C,b};
+  }
+  function inverse(H) {
+    if(H.length===1)return [[1/H[0][0]]];
+    const d=H[0][0]*H[1][1]-H[0][1]*H[1][0];
+    return [[H[1][1]/d,-H[0][1]/d],[-H[1][0]/d,H[0][0]/d]];
+  }
+  function solve(options={}) {
+    const p=build(options), {N,H,g,C,b}=p, inv=inverse(H);
+    if(p.x>p.limit+1e-8)return {status:'infeasible',problem:p,u:null,states:[]};
+    const u0=inv.map(row=>-dot(row,g)), candidates=[u0];
+    // Minimum sur chaque droite (ou point pour N=1) d'une contrainte active.
+    for(let i=0;i<C.length;i++) {
+      const w=inv.map(row=>dot(row,C[i])), den=dot(C[i],w);
+      if(den>1e-15) { const t=(dot(C[i],u0)-b[i])/den; candidates.push(u0.map((z,j)=>z-t*w[j])); }
+    }
+    // Sommets du polygone admissible. Les intersections parallèles sont ignorées.
+    if(N===2)for(let i=0;i<C.length;i++)for(let j=i+1;j<C.length;j++) {
+      const d=C[i][0]*C[j][1]-C[i][1]*C[j][0];
+      if(Math.abs(d)>1e-12)candidates.push([(b[i]*C[j][1]-C[i][1]*b[j])/d,(C[i][0]*b[j]-b[i]*C[j][0])/d]);
+    }
+    let u=null, score=Infinity;
+    for(const z of candidates) {
+      if(!z.every(Number.isFinite)||C.some((row,i)=>dot(row,z)>b[i]+1e-8))continue;
+      const q=0.5*dot(z,H.map(row=>dot(row,z)))+dot(g,z);
+      if(q<score){score=q;u=z;}
+    }
+    if(!u)return {status:'infeasible',problem:p,u:null,states:[]};
+    const states=[{x:p.x,v:p.v}];
+    for(const a of u)states.push(advance(states.at(-1),a,p.T));
+    const cost=states.slice(1).reduce((s,z,i)=>s+(z.v-p.vref)**2+p.rho*u[i]**2,0);
+    return {status:'optimal',problem:p,u,states,cost,
+      residual:Math.max(0,...C.map((row,i)=>dot(row,u)-b[i]))};
+  }
+  function advance({x,v},a,T=1) {return {x:x+T*v+0.5*T*T*a,v:v+T*a};}
+  function simulate(options={},steps=6) {
+    let state={x:options.x??0,v:options.v??2};const states=[state],controls=[],plans=[];
+    for(let k=0;k<steps;k++) {
+      const plan=solve({...options,...state});plans.push(plan);
+      if(plan.status!=='optimal')return {states,controls,plans,status:'infeasible'};
+      state=advance(state,plan.u[0],options.T??1);states.push(state);controls.push(plan.u[0]);
+      if(Math.abs(state.v)<1e-8&&Math.abs(state.x-(options.limit??2))<1e-8)return {states,controls,plans,status:'stopped'};
+    }
+    return {states,controls,plans,status:'horizon'};
+  }
+  const api={build,solve,advance,simulate};
+  if(typeof module!=='undefined'&&module.exports)module.exports=api;
+  else root.MPC=api;
+})(typeof globalThis!=='undefined'?globalThis:this);
+</script>
+<script>
+'use strict';
+const $=id=>document.getElementById(id), fmt=(v,n=2)=>Math.abs(v)<1e-9?(0).toFixed(n).replace('.',','):v.toFixed(n).replace('.',',');
+let N=2,rho=0.1,states=[{x:0,v:2}],plan,playing=false,timer=null;
+const colors={blue:'#1f5a94',teal:'#168c8c',orange:'#b84220',muted:'#61768a',navy:'#102a43'};
+const line=(x1,y1,x2,y2,style='')=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" ${style}/>`;
+const txt=(x,y,s,extra='')=>`<text x="${x}" y="${y}" font-family="system-ui,sans-serif" font-size="13" fill="${colors.muted}" ${extra}>${s}</text>`;
+function stop(){playing=false;clearTimeout(timer);$('play').textContent='Lire';}
+function reset(){stop();states=[{x:0,v:2}];render();}
+function done(){const z=states.at(-1);return Math.abs(z.x-2)<1e-8&&Math.abs(z.v)<1e-8;}
+function step(){if(!plan||plan.status!=='optimal'||done()){stop();return;}states.push(MPC.advance(states.at(-1),plan.u[0]));render();if(done()||plan.status!=='optimal')stop();}
+function tick(){if(!playing)return;step();if(playing)timer=setTimeout(tick,1100);}
+function plot(){
+ const k=states.length-1, W=760,H=225,left=50,right=735,top=20,bottom=180,maxT=4,maxX=2.5;
+ const xx=t=>left+t/maxT*(right-left), yy=x=>bottom-x/maxX*(bottom-top);let s='';
+ for(let t=0;t<=maxT;t++){s+=line(xx(t),top,xx(t),bottom,'stroke="#e8edf2"');s+=txt(xx(t),202,String(t),'text-anchor="middle"');}
+ for(let x=0;x<=2;x+=0.5){s+=line(left,yy(x),right,yy(x),'stroke="#e8edf2"');s+=txt(40,yy(x)+4,fmt(x,1),'text-anchor="end"');}
+ s+=line(left,yy(2),right,yy(2),`stroke="${colors.orange}" stroke-width="2"`);s+=txt(right,yy(2)-7,'limite : 2 m','text-anchor="end"');
+ const path=(hist,us,start,color,dash)=>{let pts=[];for(let i=0;i<us.length;i++)for(let j=0;j<=25;j++){let z=MPC.advance(hist[i],us[i],j/25);pts.push(`${xx(start+i+j/25)},${yy(z.x)}`);}if(pts.length)s+=`<polyline fill="none" stroke="${color}" stroke-width="3" ${dash?'stroke-dasharray="7 5"':''} points="${pts.join(' ')}"/>`;};
+ const applied=states.slice(1).map((z,i)=>z.v-states[i].v);path(states,applied,0,colors.blue,false);
+ if(plan.status==='optimal'&&!done())path(plan.states,plan.u,k,colors.teal,true);
+ states.forEach((z,i)=>s+=`<circle cx="${xx(i)}" cy="${yy(z.x)}" r="5" fill="${colors.blue}" stroke="white" stroke-width="2"/>`);
+ if(plan.status==='optimal'&&!done())plan.states.slice(1).forEach((z,i)=>s+=`<circle cx="${xx(k+i+1)}" cy="${yy(z.x)}" r="4" fill="white" stroke="${colors.teal}" stroke-width="2"/>`);
+ s+=txt(9,13,'x (m)');s+=txt(right,222,'temps (s)','text-anchor="end"');$('plot').innerHTML=s;
+}
+function scene(){const z=states.at(-1),sx=x=>55+x/3.8*650;let s=line(30,100,735,100,'stroke="#aebdca" stroke-width="2"');
+ for(let x=0;x<=3.5;x+=.5){s+=line(sx(x),96,sx(x),105,'stroke="#aebdca"');s+=txt(sx(x),125,fmt(x,1),'text-anchor="middle"');}
+ s+=line(sx(2),30,sx(2),106,`stroke="${colors.orange}" stroke-width="4"`)+txt(sx(2)+9,39,'limite');
+ const px=sx(z.x);s+=`<rect x="${px-20}" y="66" width="40" height="23" rx="5" fill="${colors.blue}"/><circle cx="${px-12}" cy="93" r="7" fill="${colors.navy}"/><circle cx="${px+12}" cy="93" r="7" fill="${colors.navy}"/>`;
+ if(z.v>1e-7){const end=px+25+z.v*36;s+=line(px+25,75,end,75,`stroke="${colors.teal}" stroke-width="3"`);s+=`<polygon points="${end},75 ${end-9},70 ${end-9},80" fill="${colors.teal}"/>`;}
+ s+=txt(px,57,`v = ${fmt(z.v)} m/s`,'text-anchor="middle"');s+=txt(735,125,'x (m)','text-anchor="end"');$('scene').innerHTML=s;}
+function render(){const z=states.at(-1),k=states.length-1;plan=MPC.solve({N,rho,...z});$('costformula').textContent=`J = Σ [(vᵢ₊₁ − 2)² + ${String(rho).replace('.',',')} aᵢ²]`;$('mx').textContent=fmt(z.x);$('mv').textContent=fmt(z.v);$('ma').textContent=plan.status==='optimal'?fmt(plan.u[0]):'—';$('time').textContent=`t = ${k} s · horizon N = ${N}`;
+ const st=$('status');st.className='status';
+ if(plan.status!=='optimal'){st.classList.add('warn');st.innerHTML='<strong>Problème infaisable au nouvel état.</strong><p>Aucune commande n’est appliquée. Avec v = 2 m/s, même a = −1 donnerait x = 3,5 m au pas suivant. La simulation se fige pour examiner cet échec; le robot ne serait pas physiquement arrêté.</p>';}else if(done()){st.innerHTML='<strong>Arrêt obtenu : x = 2 m, v = 0 m/s.</strong><p>Le robot a freiné pendant deux secondes. Les deux accélérations ont été choisies lors de deux calculs successifs.</p>';}else{st.innerHTML=`<strong>${N===1?'La prévision ne voit que la première seconde.':'La prévision impose de freiner dès maintenant.'}</strong><p>Commande à appliquer : a = ${fmt(plan.u[0])} m/s². ${N===1?'Au bout de ce pas, la position reste admissible mais la vitesse sera trop élevée.':'Les commandes plus lointaines sont indicatives : elles seront recalculées.'}</p>`;}
+ $('step').disabled=done()||plan.status!=='optimal';$('play').disabled=$('step').disabled;
+ $('plan').innerHTML=plan.status==='optimal'?plan.u.map((a,i)=>`<tr><td>${i===0?'maintenant':`dans ${i} s`}</td><td>${fmt(a)}</td><td>${fmt(plan.states[i+1].x)}</td><td>${fmt(plan.states[i+1].v)}</td></tr>`).join(''):'<tr><td colspan="4" style="text-align:left">Aucune suite admissible.</td></tr>';
+ $('planhint').textContent=plan.status==='optimal'?`Coût prévu J = ${fmt(plan.cost)}. ${done()?'La commande suivante reste nulle.':'La première ligne est la seule appliquée.'}`:'Recommencer avec un horizon de deux pas pour anticiper le freinage.';
+ $('history').innerHTML=states.map((z,i)=>`<tr><td>${i}</td><td>${fmt(z.x)}</td><td>${fmt(z.v)}</td></tr>`).join('');scene();plot();}
+$('rho').addEventListener('change',()=>{rho=Number($('rho').value);reset();});$('step').addEventListener('click',()=>{stop();step();});$('reset').addEventListener('click',reset);$('play').addEventListener('click',()=>{if(playing){stop();return;}playing=true;$('play').textContent='Pause';timer=setTimeout(tick,550);});document.querySelectorAll('[name=horizon]').forEach(el=>el.addEventListener('change',()=>{N=Number(el.value);reset();}));render();
+</script></html>

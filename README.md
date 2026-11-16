@@ -20,6 +20,7 @@ Ouvrir le site ci-dessus, choisir une expérience, puis cliquer sur **Lire**. Da
 | Chapitre 4, séance 3 | Huit avec horaire, puis cercle sans horaire | [Trajectoire](https://sberkane.github.io/GEN6323-simulations/chapitre4/interactif/index.html#planar/trajectory) · [Chemin](https://sberkane.github.io/GEN6323-simulations/chapitre4/interactif/index.html#planar/path) |
 | Chapitre 4, séance 3 | Même correction de pose, trois réalisations des vitesses | [Comparer les modèles avec rétroaction](https://sberkane.github.io/GEN6323-simulations/chapitre4/seance3/chapitre4_simulation.html) |
 | Chapitre 4, séance 4 | Quadrirotor 2D : gravité, attitude, position | [But fixe](https://sberkane.github.io/GEN6323-simulations/chapitre4/interactif/index.html#quad) · [Trajectoire](https://sberkane.github.io/GEN6323-simulations/chapitre4/interactif/index.html#quad/trajectory) |
+| Chapitre 4, séance 4 · Complément | MPC : anticiper un freinage, comparer les horizons | [Arrêt par commande prédictive](https://sberkane.github.io/GEN6323-simulations/chapitre4/mpc/index.html) |
 | Chapitre 3, séance 1 | Intégration d'Euler et intégration exacte | [Programme MATLAB et instructions](chapitre3/README.md) |
 
 **Sans connexion :** télécharger le dépôt avec **Code → Download ZIP**, décompresser entièrement, puis ouvrir `index.html`. Conserver l'arborescence. Les animations fonctionnent sans serveur, compte ni bibliothèque à installer. La lecture du code sur GitHub n'exécute pas les animations : utiliser le site ou les fichiers décompressés.
@@ -64,6 +65,7 @@ Les scripts Python exécutent leurs contrôles numériques lors de la reproducti
 node chapitre4/boucle_ouverte/verifier_interface.js
 node chapitre4/seance3/verifier_animation_chapitre4.js
 node chapitre4/interactif/verifier_laboratoire.js
+node chapitre4/mpc/verifier_mpc.js
 ```
 
 Ces contrôles vérifient notamment les données de l'animation, les contraintes d'effort et les comportements attendus des modèles. Ils ne constituent pas une preuve de stabilité générale. Exécution MATLAB/Octave non vérifiée.
@@ -78,6 +80,7 @@ chapitre4/seance1/             Navigation et ancien lien conservé
 chapitre4/seance2/              Quatre études reproductibles (Python)
 chapitre4/seance3/             Suivi de trajectoire avec rétroaction
 chapitre4/interactif/           Laboratoire avec calculs dans le navigateur
+chapitre4/mpc/                 Commande prédictive et programme MATLAB
 requirements.txt               Dépendances Python vérifiées
 ```
 
